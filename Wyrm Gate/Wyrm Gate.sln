@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{F63E8B49-9C3B-3955-B1DB-CA229A473461}") = "Wyrm Gate", "Assembly-CSharp.csproj", "{0CB01835-3158-4A18-8300-48E694218AAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CB01835-3158-4A18-8300-48E694218AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB01835-3158-4A18-8300-48E694218AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB01835-3158-4A18-8300-48E694218AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB01835-3158-4A18-8300-48E694218AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
