@@ -18,4 +18,9 @@ public class PlayerController : MonoBehaviour {
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 		rb.AddForce (movement * speed);
 	}
+
+    public Rigidbody2D getRB()
+    {
+        return rb;
+    }
 }
