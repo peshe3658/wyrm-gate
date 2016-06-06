@@ -19,7 +19,7 @@ public class FollowAI : MonoBehaviour {
         var player = GameObject.FindWithTag("Player");
         x = player.GetComponent<Rigidbody2D>().position.x;
         y = player.GetComponent<Rigidbody2D>().position.y;
-        Vector2 movement = new Vector2(x, y);
+        Vector2 movement = new Vector2(-x, -y);
         rb.AddForce(movement * speed);
     }
 }
