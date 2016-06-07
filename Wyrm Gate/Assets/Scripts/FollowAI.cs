@@ -23,13 +23,13 @@ public class FollowAI : MonoBehaviour {
         x = GetComponent<Rigidbody2D>().position.x;
         y = GetComponent<Rigidbody2D>().position.y;
         Vector2 current = new Vector2(x, y);
-        rb.AddForce(-1 * (Vector2.MoveTowards(current, movement, 2.0f) * speed));
-        if (rb.velocity.magnitude > 50 && rb.drag < 100)
+        rb.AddForce(-1 * (Vector2.MoveTowards(current, movement, 0.000001f) * speed));
+        if (rb.velocity.magnitude > 20 && rb.drag < 100)
         {
             rb.drag += 1.0f;
         }
 
-        if (rb.velocity.magnitude < 50 && rb.drag > 0)
+        if (rb.velocity.magnitude < 20 && rb.drag > 0)
         {
             rb.drag -= 1.0f;
         }
