@@ -9,6 +9,7 @@ public class bulletScript : MonoBehaviour {
     private int[] bulletArray;
     private GameObject[] bulletList;
     private Rigidbody2D rb;
+    private bool check = false;
     
     // Use this for initialization
 	void Start ()
@@ -16,24 +17,25 @@ public class bulletScript : MonoBehaviour {
         var player = GameObject.FindWithTag("Player");
         rb = player.GetComponent<Rigidbody2D>();
         bulletArray = new int[bulletLimit];
+        bulletList = new GameObject[bulletLimit];
         currentAmount = 0;
     }
 
     void spawn()
     {
+        print(bulletArray[1]);
         Quaternion bulletRotation = Quaternion.identity;
-        bulletList = new GameObject[bulletLimit];
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        print(mousePos);
         if (currentAmount < bulletLimit)
         {
             Destroy(bulletList[currentAmount]);
             Vector3 spawnPosition = new Vector3(rb.position.x, rb.position.y, 0);
-            print(spawnPosition);
             bulletList[currentAmount] = (GameObject)Instantiate(bullets, spawnPosition, bulletRotation);
             bulletList[currentAmount].GetComponent<Rigidbody2D>().AddForce((mousePos - spawnPosition) * 1000);
-            currentAmount++;
+            bulletArray[currentAmount] = 1;
+            print(bulletArray[currentAmount]);
             print(currentAmount);
+            currentAmount++;
         }
         else
         {
@@ -48,5 +50,24 @@ public class bulletScript : MonoBehaviour {
         {
             spawn();
         }
-	}
+        GameController instanceOfB = GameObject.Find("GameController").GetComponent<GameController>();
+        for (int i = 0; i < bulletLimit; i++)
+        {
+            if (bulletArray[i] == 0)
+            {
+
+            }
+            else
+            {
+                print(bulletList);
+                check = instanceOfB.collisonCheck(bulletList[i].GetComponent<Collider2D>());
+                if (check == true)
+                {
+                    bulletArray[i] = 0;
+                }
+            }
+        }
+        
+    }
+
 }

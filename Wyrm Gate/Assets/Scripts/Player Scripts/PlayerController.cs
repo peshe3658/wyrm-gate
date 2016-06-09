@@ -36,7 +36,10 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.LeftShift)) {
 			UnBrake ();	
 		}
-	}
+
+        GameController instanceOfB = GameObject.Find("GameController").GetComponent<GameController>();
+        instanceOfB.collisonCheck(GetComponent<Collider2D>());
+    }
 	void FixedUpdate () {
 		
 		float moveHorizontal = Input.GetAxis ("Horizontal");
