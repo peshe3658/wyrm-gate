@@ -21,15 +21,17 @@ public class bulletScript : MonoBehaviour {
 
     void spawn()
     {
-        Vector3 test = rb.position;
-        Quaternion bulletRotation = Quaternion.Euler(test);
+        Quaternion bulletRotation = Quaternion.identity;
         bulletList = new GameObject[bulletLimit];
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        print(mousePos);
         if (currentAmount < bulletLimit)
         {
             Destroy(bulletList[currentAmount]);
             Vector3 spawnPosition = new Vector3(rb.position.x, rb.position.y, 0);
+            print(spawnPosition);
             bulletList[currentAmount] = (GameObject)Instantiate(bullets, spawnPosition, bulletRotation);
-            bulletList[currentAmount].GetComponent<Rigidbody2D>().velocity = 10*(rb.velocity);
+            bulletList[currentAmount].GetComponent<Rigidbody2D>().AddForce((mousePos - spawnPosition) * 1000);
             currentAmount++;
             print(currentAmount);
         }
