@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
         enemies = new GameObject[enemyAmount];
         for (int i = 0; i < enemyAmount; i++)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-positionRange.x, positionRange.x), Random.Range(-positionRange.y, positionRange.y), Random.Range(-positionRange.z, positionRange.z));
+            Vector3 spawnPosition = new Vector3(Random.Range(-positionRange.x, positionRange.x), Random.Range(-positionRange.y, positionRange.y), -9);
             enemies[i] = (GameObject)Instantiate(enemy, spawnPosition, enemyRotation);
         }
     }

@@ -29,7 +29,7 @@ public class bulletScript : MonoBehaviour {
         if (currentAmount < bulletLimit)
         {
             Destroy(bulletList[currentAmount]);
-            Vector3 spawnPosition = new Vector3(rb.position.x, rb.position.y, 0);
+            Vector3 spawnPosition = new Vector3(rb.position.x, rb.position.y, -9);
             bulletList[currentAmount] = (GameObject)Instantiate(bullets, spawnPosition, bulletRotation);
             bulletList[currentAmount].GetComponent<Rigidbody2D>().AddForce((mousePos - spawnPosition) * 1000);
             bulletArray[currentAmount] = 1;

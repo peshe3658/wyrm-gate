@@ -5,6 +5,8 @@ public class FollowAI : MonoBehaviour {
 
     private Rigidbody2D rb;
     public float speed;
+    private float Range;
+    bool activated;
     // Use this for initialization
     void Start ()
     {
@@ -17,21 +19,21 @@ public class FollowAI : MonoBehaviour {
         float x;
         float y;
         var player = GameObject.FindWithTag("Player");
-        x = player.GetComponent<Rigidbody2D>().position.x;
-        y = player.GetComponent<Rigidbody2D>().position.y;
-        Vector2 movement = new Vector2(x, y);
-        x = GetComponent<Rigidbody2D>().position.x;
-        y = GetComponent<Rigidbody2D>().position.y;
-        Vector2 current = new Vector2(x, y);
-        rb.AddForce(-1 * (Vector2.MoveTowards(current, movement, 0.000001f) * speed));
-        if (rb.velocity.magnitude > 20 && rb.drag < 100)
+        if (Vector2.Distance(player.GetComponent<Rigidbody2D>().position, GetComponent<Rigidbody2D>().position) < 10.0f)
         {
-            rb.drag += 1.0f;
+            activated = true;
         }
-
-        if (rb.velocity.magnitude < 20 && rb.drag > 0)
+        if (activated == true)
         {
-            rb.drag -= 1.0f;
+            x = player.GetComponent<Rigidbody2D>().position.x;
+            y = player.GetComponent<Rigidbody2D>().position.y;
+            Vector2 movement = new Vector2(x, y);
+            x = GetComponent<Rigidbody2D>().position.x;
+            y = GetComponent<Rigidbody2D>().position.y;
+            Vector2 current = new Vector2(x, y);
+            Range = Vector2.Distance(current, movement);
+            transform.Translate(Vector2.MoveTowards(current, movement, Range) * speed * Time.deltaTime);
+            
         }
 
     }
