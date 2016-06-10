@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class bulletScript : MonoBehaviour {
+public class BulletScriptE : MonoBehaviour {
 
     public GameObject bullets;
     public int bulletLimit;
@@ -11,9 +11,9 @@ public class bulletScript : MonoBehaviour {
     private Rigidbody2D rb;
     private bool check = false;
     private float timer;
-    
+
     // Use this for initialization
-	void Start ()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bulletArray = new int[bulletLimit];
@@ -24,14 +24,15 @@ public class bulletScript : MonoBehaviour {
 
     void spawn()
     {
+        var player = GameObject.FindWithTag("Player");
+        Vector3 mousePos = player.GetComponent<Rigidbody2D>().position;
         Quaternion bulletRotation = Quaternion.identity;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (currentAmount < bulletLimit)
         {
             Destroy(bulletList[currentAmount]);
             Vector3 spawnPosition = new Vector3(rb.position.x, rb.position.y, -9);
             bulletList[currentAmount] = (GameObject)Instantiate(bullets, spawnPosition, bulletRotation);
-            bulletList[currentAmount].GetComponent<Rigidbody2D>().AddForce((mousePos - spawnPosition) * 1000);
+            bulletList[currentAmount].GetComponent<Rigidbody2D>().AddForce((mousePos - spawnPosition) * 100);
             bulletArray[currentAmount] = 1;
             currentAmount++;
         }
@@ -42,12 +43,22 @@ public class bulletScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (GetComponent<FollowAI>().getActivated() == true && check == false)
         {
-            spawn();
+            InvokeRepeating("spawn", 1, 3f);
+            check = true;
         }
+
+        else if (GetComponent<FollowAI>().getActivated() == false)
+        {
+            CancelInvoke();
+            check = false;
+        }
+
+        
+
         GameController instanceOfB = GameObject.Find("GameController").GetComponent<GameController>();
         for (int i = 0; i < bulletLimit; i++)
         {
@@ -57,21 +68,19 @@ public class bulletScript : MonoBehaviour {
             }
             else
             {
-                print(bulletList);
-                check = instanceOfB.collisonCheck(bulletList[i].GetComponent<Collider2D>());
-                if (check == true)
-                {
-                    bulletArray[i] = 0;
-                    Destroy(bulletList[i]);
-                }
-                if (Time.time - timer >= 3f)
+                //check = instanceOfB.collisonCheck(bulletList[i].GetComponent<Collider2D>());
+                //if (check == true)
+                //{
+                //    bulletArray[i] = 0;
+                //    Destroy(bulletList[i]);
+                //}
+                if (Time.time - timer >= 1f)
                 {
                     timer = Time.time;
                     Destroy(bulletList[i]);
                 }
             }
         }
-        
-    }
 
+    }
 }

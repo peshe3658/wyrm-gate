@@ -5,8 +5,8 @@ public class FollowAI : MonoBehaviour {
 
     private Rigidbody2D rb;
     public float speed;
-    private float Range;
-    bool activated;
+    private bool activated;
+    private bool bullets;
     // Use this for initialization
     void Start ()
     {
@@ -22,20 +22,28 @@ public class FollowAI : MonoBehaviour {
         if (Vector2.Distance(player.GetComponent<Rigidbody2D>().position, GetComponent<Rigidbody2D>().position) < 10.0f)
         {
             activated = true;
+            bullets = true;
+        }
+        else
+        {
+            bullets = false;
         }
         if (activated == true)
         {
             x = player.GetComponent<Rigidbody2D>().position.x;
             y = player.GetComponent<Rigidbody2D>().position.y;
             Vector2 movement = new Vector2(x, y);
-            x = GetComponent<Rigidbody2D>().position.x;
-            y = GetComponent<Rigidbody2D>().position.y;
-            Vector2 current = new Vector2(x, y);
-            Range = Vector2.Distance(current, movement);
-            transform.Translate(Vector2.MoveTowards(current, movement, Range) * speed * Time.deltaTime);
-            
+            Vector2 Range = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), movement, speed * Time.deltaTime);
+            Vector3 position = new Vector3(Range.x, Range.y, -9f);
+            transform.position = position;
+
         }
 
+    }
+
+    public bool getActivated()
+    {
+        return bullets;
     }
 
 }
