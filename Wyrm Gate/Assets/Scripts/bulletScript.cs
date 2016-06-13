@@ -59,14 +59,15 @@ public class bulletScript : MonoBehaviour {
             {
                 print(bulletList);
                 check = instanceOfB.collisonCheck(bulletList[i].GetComponent<Collider2D>());
-                if (check == true)
+                if (check == true && bulletArray[i] != 0)
                 {
                     bulletArray[i] = 0;
                     Destroy(bulletList[i]);
                 }
-                if (Time.time - timer >= 3f)
+                if (Time.time - timer >= 1f && bulletArray[i] != 0)
                 {
                     timer = Time.time;
+                    bulletArray[i] = 0;
                     Destroy(bulletList[i]);
                 }
             }

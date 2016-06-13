@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class bulletScriptE : MonoBehaviour {
+public class BulletScriptE : MonoBehaviour {
 
     public GameObject bullets;
     public int bulletLimit;

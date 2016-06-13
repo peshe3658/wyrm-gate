@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour {
             }
             else if (enemies[i].GetComponent<CircleCollider2D>().IsTouching(rb))
             {
+                enemies[i].GetComponent<bulletScriptE>().destroy();
                 Destroy(enemies[i]);
                 currentAmount--;
                 enemyArray[i] = 1;

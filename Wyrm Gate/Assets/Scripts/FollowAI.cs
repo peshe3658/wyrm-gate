@@ -19,7 +19,7 @@ public class FollowAI : MonoBehaviour {
         float x;
         float y;
         var player = GameObject.FindWithTag("Player");
-        if (Vector2.Distance(player.GetComponent<Rigidbody2D>().position, GetComponent<Rigidbody2D>().position) < 10.0f)
+        if (Vector2.Distance(player.GetComponent<Rigidbody2D>().position, GetComponent<Rigidbody2D>().position) < 20.0f)
         {
             activated = true;
             bullets = true;
