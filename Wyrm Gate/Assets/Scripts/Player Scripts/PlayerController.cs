@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour {
 			UnBrake ();	
 		}
 
-        GameController instanceOfB = GameObject.Find("GameController").GetComponent<GameController>();
-        instanceOfB.collisonCheck(GetComponent<Collider2D>());
+     //   GameController instanceOfB = GameObject.Find("GameController").GetComponent<GameController>();
+       // instanceOfB.collisonCheck(GetComponent<Collider2D>());
     }
 	void FixedUpdate () {
 		
