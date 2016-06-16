@@ -11,6 +11,7 @@ public class LoadLevel : MonoBehaviour {
         GameObject player = core;
         player.GetComponent<PlayerController>().enabled = true;
         player.GetComponent<RotatePlayer>().enabled = true;
+        player.GetComponent<PlayerCollider>().enabled = true;
         DontDestroyOnLoad(player);
         GameObject[] bPlaceArray = GetComponent<BlockBuilder>().getBPlaceArray();
         GameObject[] cPlaceArray = GetComponent<BlockBuilder>().getCPlaceArray();
@@ -34,6 +35,7 @@ public class LoadLevel : MonoBehaviour {
             else
             {
                 cPlaceArray[i].GetComponent<PlayerController>().enabled = true;
+                cPlaceArray[i].GetComponent<bulletScript>().enabled = true;
             }
         }
         SceneManager.LoadScene("Game");

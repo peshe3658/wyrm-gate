@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\BulletScriptE.cs" />
      <Compile Include="Assets\LoadLevel.cs" />
+     <Compile Include="Assets\PlayerCollider.cs" />
      <Compile Include="Assets\Scripts\BlockBuilder.cs" />
      <Compile Include="Assets\Scripts\BlockPick.cs" />
      <Compile Include="Assets\Scripts\BulletScriptE.cs" />

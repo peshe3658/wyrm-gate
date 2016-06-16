@@ -34,20 +34,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    void onTriggerEnter(Collider other)
-    {
-        print("test");
-        if (other.gameObject.tag == "enemy")
-        {
-            other.GetComponent<bulletScriptE>().destroy();
-            Destroy(other);
-            print("test2");
-        }
-        else if (other.gameObject.tag == "bullet")
-        {
-            Destroy(other);
-        }
-    }
+    
 
     public bool collisonCheck(Collider2D rb)
     {
@@ -63,7 +50,7 @@ public class GameController : MonoBehaviour {
             
             else if (enemies[i].GetComponent<Collider2D>().IsTouching(rb))
             {
-                enemies[i].GetComponent<bulletScriptE>().destroy();
+                enemies[i].GetComponent<BulletScriptE>().destroy();
                 Destroy(enemies[i]);
                 currentAmount--;
                 enemyArray[i] = 1;
