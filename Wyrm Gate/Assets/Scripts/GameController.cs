@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
     public Vector3 positionRange;
     public int enemyAmount;
     private BoxCollider2D rb;
+    private bool skip = false;
 
 
     // Use this for initialization
@@ -33,17 +34,34 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    void onTriggerEnter(Collider other)
+    {
+        print("test");
+        if (other.gameObject.tag == "enemy")
+        {
+            other.GetComponent<bulletScriptE>().destroy();
+            Destroy(other);
+            print("test2");
+        }
+        else if (other.gameObject.tag == "bullet")
+        {
+            Destroy(other);
+        }
+    }
+
     public bool collisonCheck(Collider2D rb)
     {
         bool check = false;
+        
         for (int i = 0; i < enemyAmount; i++)
         {
 
             if(enemyArray[i] == 1)
             {
-
+                skip = true;
             }
-            else if (enemies[i].GetComponent<CircleCollider2D>().IsTouching(rb))
+            
+            else if (enemies[i].GetComponent<Collider2D>().IsTouching(rb))
             {
                 enemies[i].GetComponent<bulletScriptE>().destroy();
                 Destroy(enemies[i]);

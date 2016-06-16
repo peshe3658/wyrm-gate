@@ -186,6 +186,14 @@ public class BlockBuilder : MonoBehaviour {
 				}		
 			}
 		}
-	}
+    public GameObject[] getBPlaceArray()
+    {
+        return bPlaceArray;
+    }
+    public GameObject[] getCPlaceArray()
+    {
+        return cPlaceArray;
+    }
+}
 
 		
